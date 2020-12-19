@@ -7,16 +7,16 @@ import (
 
 func main() {
 	transaction1 := card.Transaction{
-		Id:     0,
-		Sum:    3000,
+		Id:  0,
+		Sum: 3000,
 	}
 	transaction2 := card.Transaction{
-		Id:     1,
-		Sum:    2000,
+		Id:  1,
+		Sum: 2000,
 	}
 	transaction3 := card.Transaction{
-		Id:     2,
-		Sum:    22000,
+		Id:  2,
+		Sum: 22000,
 	}
 
 	transactions := []card.Transaction{transaction1, transaction2, transaction3}

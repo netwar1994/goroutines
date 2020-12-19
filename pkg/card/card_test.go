@@ -10,20 +10,20 @@ func TestSortTransactions(t *testing.T) {
 		transactions []Transaction
 	}
 	transaction1 := Transaction{
-		Id:     0,
-		Sum:    3000,
+		Id:  0,
+		Sum: 3000,
 	}
 	transaction2 := Transaction{
-		Id:     1,
-		Sum:    2000,
+		Id:  1,
+		Sum: 2000,
 	}
 	transaction3 := Transaction{
-		Id:     2,
-		Sum:    22000,
+		Id:  2,
+		Sum: 22000,
 	}
 
-	trans := []Transaction{transaction1, transaction2,transaction3}
-	transSort := []Transaction{transaction3, transaction1,transaction2}
+	trans := []Transaction{transaction1, transaction2, transaction3}
+	transSort := []Transaction{transaction3, transaction1, transaction2}
 
 	tests := []struct {
 		name string
