@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/netwar1994/goroutines/pkg/card"
 	"math/rand"
-	"strconv"
 	"time"
 )
 
@@ -37,21 +36,8 @@ func main() {
 		month.Transactions = append(month.Transactions, &card.Transaction{Sum: transaction})
 	}
 
-	monthsMap := make(map[string][]*card.Transaction)
-
 	for m := range months{
-		t :=  time.Unix(months[m].MonthTimestamp, 0)
-		year := t.Year()
-		month := t.Month().String()
-		d := strconv.Itoa(year) + "-" + month
-
-		monthsMap[d] = months[m].Transactions
+		d := time.Unix(months[m].MonthTimestamp, 0)
+		fmt.Println(d.Year(), d.Month(), card.Sum(months[m].Transactions))
 	}
-
-	fmt.Println("Transactions sum by month")
-	for m, t := range monthsMap {
-		fmt.Print(m, ":")
-		card.SumConcurrently(t, 1)
-	}
-
 }
