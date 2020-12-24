@@ -16,6 +16,7 @@ func Sum(transactions []*Transaction) int64 {
 		result += transaction.Sum
 	}
 	return result
+	//fmt.Println(result)
 }
 
 

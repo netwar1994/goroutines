@@ -38,6 +38,10 @@ func main() {
 
 	for m := range months{
 		d := time.Unix(months[m].MonthTimestamp, 0)
-		fmt.Println(d.Year(), d.Month(), card.Sum(months[m].Transactions))
+		transactions := months[m].Transactions
+		go func() {
+			fmt.Println(d.Year(), d.Month(), card.Sum(transactions))
+		}()
 	}
+	time.Sleep(time.Second)
 }
