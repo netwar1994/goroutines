@@ -9,7 +9,7 @@ import (
 
 func main() {
 	start := time.Date(2019, 1, 1, 0, 0, 0, 0, time.Local)
-	finish := time.Date(2020, 8, 1, 0, 0, 0, 0, time.Local)
+	finish := time.Date(2020, 5, 1, 0, 0, 0, 0, time.Local)
 
 	months := make([]*card.Part, 0)
 
@@ -24,24 +24,22 @@ func main() {
 		MonthTimestamp: finish.Unix(),
 	})
 
-
 	transactions := make([]int64, 10_00)
-	for transaction := range transactions{
+	for transaction := range transactions {
 		transactions[transaction] = rand.Int63n(100)
 	}
-
 
 	for _, transaction := range transactions {
 		month := months[rand.Intn(len(months))]
 		month.Transactions = append(month.Transactions, &card.Transaction{Sum: transaction})
 	}
 
-	for m := range months{
-		d := time.Unix(months[m].MonthTimestamp, 0)
-		transactions := months[m].Transactions
-		go func() {
-			fmt.Println(d.Year(), d.Month(), card.Sum(transactions))
-		}()
+	fmt.Println("Sum by month")
+	for m := range months {
+		t := time.Unix(months[m].MonthTimestamp, 0)
+		year := t.Year()
+		month := t.Month()
+		fmt.Println(year, month, ":", card.SumConcurrently(months[m].Transactions, 10))
 	}
-	time.Sleep(time.Second)
+
 }
